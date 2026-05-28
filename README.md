@@ -1,12 +1,12 @@
-# KoinX Tax Loss Harvesting Tool
+ SuperX Tax Loss Harvesting Tool
 
 A responsive React + TypeScript dashboard for crypto tax harvesting, built as a KoinX frontend assignment.
 
-## 🚀 Live Demo
+ 🚀 Live Demo
 
 > Live demo URL available after deployment.
 
-## ✨ Features
+ ✨ Features
 
 - ✅ **Interactive holdings table** with row selection and checkbox controls
 - ✅ **Capital gains dashboard** showing Pre- and After-Harvesting results
@@ -18,14 +18,14 @@ A responsive React + TypeScript dashboard for crypto tax harvesting, built as a 
 - ✅ **Mobile-friendly design** with responsive layout
 - ✅ **TypeScript + Vite** for a modern frontend setup
 
-## 🛠️ Setup Instructions
+ 🛠️ Setup Instructions
 
-### Prerequisites
+ Prerequisites
 
 - Node.js 18 or newer
 - npm 9 or newer
 
-### Install and run locally
+ Install and run locally
 
 ```bash
 cd "C:\Users\Sujal\Downloads\koinx-tlh"
@@ -35,19 +35,19 @@ npm run dev
 
 Open `http://localhost:5173` in your browser.
 
-### Build for production
+ Build for production
 
 ```bash
 npm run build
 ```
 
-### Preview production build
+ Preview production build
 
 ```bash
 npm run preview
 ```
 
-## 📁 Project Structure
+ 📁 Project Structure
 
 ```
 src/
@@ -71,7 +71,7 @@ src/
 └── main.tsx
 ```
 
-## 🖼️ Screenshots
+ 🖼️ Screenshots
 
 The app screenshots are added under `screenshots/`.
 
@@ -81,9 +81,8 @@ The app screenshots are added under `screenshots/`.
 
 ![Recommendations Panel](screenshots/recommendations.png)
 
-If the images do not appear in GitHub preview, add the image files to the `screenshots/` folder with those exact names.
 
-## 🧮 Assumptions
+ 🧮 Assumptions
 
 - Holdings are displayed in Indian Rupees (`₹`)
 - `Total Current Value` is calculated as `currentPrice * totalHolding`
@@ -91,29 +90,29 @@ If the images do not appear in GitHub preview, add the image files to the `scree
 - The savings banner appears only when after-harvest realised gains are lower than pre-harvest realised gains
 - Recommendation logic prioritises holdings by the absolute size of STCG and LTCG impact
 
-## 🔌 Mock API behavior
+   Mock API behavior
 
 - `fetchCapitalGains()` returns mock STCG and LTCG data after a short delay
 - `fetchHoldings()` returns mock holdings data after a short delay
 - Data is sorted by absolute short-term gain impact before render
 
-## 🚀 Deployment
+ 🚀 Deployment
 
-### GitHub Pages
+ GitHub Pages
 
 ```bash
 npm run build
 # then deploy the contents of dist/ to GitHub Pages or another static host
 ```
 
-### Vercel
+ Vercel
 
 ```bash
 npm install -g vercel
 vercel --prod
 ```
 
-### Netlify
+ Netlify
 
 ```bash
 npm run build
