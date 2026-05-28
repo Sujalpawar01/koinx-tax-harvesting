@@ -1,10 +1,10 @@
- SuperX Tax Loss Harvesting Tool
+ SuperX  Tax Loss Harvesting Tool
 
 A responsive React + TypeScript dashboard for crypto tax harvesting, built as a KoinX frontend assignment.
 
  🚀 Live Demo
 
-> Live demo URL available after deployment.
+
 
  ✨ Features
 
