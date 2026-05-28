@@ -1,53 +1,47 @@
 # KoinX Tax Loss Harvesting Tool
 
-A responsive React + TypeScript application for tax loss harvesting, built as a KoinX frontend internship assignment.
+A responsive React + TypeScript dashboard for crypto tax harvesting, built as a KoinX frontend assignment.
 
 ## 🚀 Live Demo
 
-> Deploy to Vercel/Netlify following the instructions below.
+> Live demo URL available after deployment.
 
 ## ✨ Features
 
-- ✅ **Real-time capital gains computation** — Selecting/deselecting holdings updates the "After Harvesting" card instantly
-- ✅ **Tax savings indicator** — Shows "You are going to save upto ₹X" when beneficial
-- ✅ **Select All / Deselect All** — Checkbox in table header controls all rows
-- ✅ **View All toggle** — Shows 5 holdings by default, expandable
-- ✅ **Skeleton loaders** — Shimmer loading states for all sections
-- ✅ **Error state** — With retry button
-- ✅ **Mobile responsive** — Stacked layout on small screens
-- ✅ **TypeScript** — Fully typed throughout
-- ✅ **useContext + useReducer** — Clean global state management
+- ✅ **Interactive holdings table** with row selection and checkbox controls
+- ✅ **Capital gains dashboard** showing Pre- and After-Harvesting results
+- ✅ **Tax savings indicator** when harvesting reduces realised gains
+- ✅ **Select All / Deselect All** support with indeterminate state
+- ✅ **View All toggle** to expand/collapse the holdings list
+- ✅ **Loading skeletons** while mock data loads
+- ✅ **Error state** with retry button
+- ✅ **Mobile-friendly design** with responsive layout
+- ✅ **TypeScript + Vite** for a modern frontend setup
 
 ## 🛠️ Setup Instructions
 
 ### Prerequisites
 
-- Node.js 18+
-- npm 9+
+- Node.js 18 or newer
+- npm 9 or newer
 
-### Installation
+### Install and run locally
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd koinx-tlh
-
-# Install dependencies
+cd "C:\Users\Sujal\Downloads\koinx-tlh"
 npm install
-
-# Start development server
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`
+Open `http://localhost:5173` in your browser.
 
-### Build for Production
+### Build for production
 
 ```bash
 npm run build
 ```
 
-### Preview Production Build
+### Preview production build
 
 ```bash
 npm run preview
@@ -58,63 +52,59 @@ npm run preview
 ```
 src/
 ├── api/
-│   ├── capitalGainsApi.ts   # Mock capital gains API (Promise-based)
-│   └── holdingsApi.ts       # Mock holdings API (Promise-based)
+│   ├── capitalGainsApi.ts   # Mock capital gains API
+│   └── holdingsApi.ts       # Mock holdings API
 ├── components/
-│   ├── Header/              # KoinX logo + header
-│   ├── Disclaimer/          # Collapsible notes accordion
-│   ├── CapitalGainsCards/   # Pre & After Harvesting cards
-│   └── HoldingsTable/       # Interactive holdings table
+│   ├── CapitalGainsCards/   # Pre & After Harvesting summary cards
+│   ├── Disclaimer/          # Collapsible notes and assumptions
+│   ├── Header/              # Application header and branding
+│   └── HoldingsTable/       # Interactive holdings table UI
 ├── context/
-│   └── HarvestingContext.tsx  # Global state (useReducer + useContext)
+│   └── HarvestingContext.tsx  # Global state management
 ├── types/
-│   └── index.ts             # TypeScript interfaces
+│   └── index.ts             # Data model definitions
 ├── utils/
-│   └── formatters.ts        # Currency & number formatters
+│   └── formatters.ts        # Currency and number formatting
 ├── App.tsx
 ├── App.css
-└── index.css
+├── index.css
+└── main.tsx
 ```
 
-## 🔌 Mock APIs
+## 🖼️ Screenshots
 
-Both APIs are implemented as Promise-returning functions with simulated delays:
+The app screenshots are added under `screenshots/`.
 
-- **Capital Gains API** — 800ms delay, returns STCG and LTCG profits/losses
-- **Holdings API** — 600ms delay, returns 25 cryptocurrency holdings
+![Dashboard View](screenshots/dashboard.png)
 
-## 🧮 Business Logic
+![Holdings Table](screenshots/holdings-table.png)
 
-### Pre Harvesting
-- Data comes directly from the Capital Gains API
-- `Net Capital Gains = profits - losses` (for each term)
-- `Realised Capital Gains = Net STCG + Net LTCG`
+![Recommendations Panel](screenshots/recommendations.png)
 
-### After Harvesting
-For each **selected** holding:
-- If `stcg.gain > 0` → add to STCG profits
-- If `stcg.gain < 0` → add to STCG losses (absolute value)
-- Same logic for LTCG
+If the images do not appear in GitHub preview, add the image files to the `screenshots/` folder with those exact names.
 
-### Savings Shown When
-`Pre Realised Gains > Post Realised Gains`
+## 🧮 Assumptions
 
-## 🎨 Tech Stack
+- Holdings are displayed in Indian Rupees (`₹`)
+- `Total Current Value` is calculated as `currentPrice * totalHolding`
+- When a holding is selected, the full `totalHolding` is considered sold
+- The savings banner appears only when after-harvest realised gains are lower than pre-harvest realised gains
+- Recommendation logic prioritises holdings by the absolute size of STCG and LTCG impact
 
-- **React 18** + **TypeScript**
-- **Vite** (build tool)
-- **Vanilla CSS** (no Tailwind/styled-components)
-- **useContext + useReducer** (state management)
+## 🔌 Mock API behavior
 
-## 📝 Assumptions
-
-1. Holdings are sorted by absolute STCG gain (descending) — highest impact first
-2. Currency displayed in Indian Rupees (₹)
-3. "Total Current Value" = `currentPrice * totalHolding`
-4. "Amount to Sell" = `totalHolding` when a row is selected (full holding)
-5. Savings message only shown when `savings > 0`
+- `fetchCapitalGains()` returns mock STCG and LTCG data after a short delay
+- `fetchHoldings()` returns mock holdings data after a short delay
+- Data is sorted by absolute short-term gain impact before render
 
 ## 🚀 Deployment
+
+### GitHub Pages
+
+```bash
+npm run build
+# then deploy the contents of dist/ to GitHub Pages or another static host
+```
 
 ### Vercel
 
@@ -127,5 +117,10 @@ vercel --prod
 
 ```bash
 npm run build
-# Upload the dist/ folder to Netlify dashboard
+# drag & drop dist/ into the Netlify site deploy interface
 ```
+
+## 📌 Notes
+
+- The app is intentionally built with vanilla CSS and no external UI framework
+- The primary focus is on tax harvesting UX and interactive selection behavior
