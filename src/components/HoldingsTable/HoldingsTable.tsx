@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import type { FC } from 'react';
 import type { Holding } from '../../types';
 import { formatCurrency, formatNumber } from '../../utils/formatters';
 import './HoldingsTable.css';
@@ -13,7 +14,7 @@ interface HoldingRowProps {
   onToggle: (idx: number) => void;
 }
 
-const HoldingRow: React.FC<HoldingRowProps> = ({ holding, index, isSelected, onToggle }) => {
+const HoldingRow: FC<HoldingRowProps> = ({ holding, index, isSelected, onToggle }) => {
   const totalCurrentValue = holding.currentPrice * holding.totalHolding;
   const stGain = holding.stcg.gain;
   const ltGain = holding.ltcg.gain;
@@ -108,7 +109,7 @@ const HoldingRow: React.FC<HoldingRowProps> = ({ holding, index, isSelected, onT
 };
 
 // Skeleton row
-const SkeletonRow: React.FC<{ cols: number }> = ({ cols }) => (
+const SkeletonRow: FC<{ cols: number }> = ({ cols }) => (
   <tr className="holdings-row">
     {Array.from({ length: cols }).map((_, i) => (
       <td key={i} className="holdings-cell">
@@ -129,7 +130,7 @@ interface HoldingsTableProps {
   loading: boolean;
 }
 
-const HoldingsTable: React.FC<HoldingsTableProps> = ({
+const HoldingsTable: FC<HoldingsTableProps> = ({
   holdings,
   selectedIds,
   allSelected,
@@ -142,7 +143,10 @@ const HoldingsTable: React.FC<HoldingsTableProps> = ({
   const [showAll, setShowAll] = useState(false);
 
   const visibleHoldings = useMemo(
-    () => (showAll ? holdings : holdings.slice(0, INITIAL_VISIBLE)),
+    () =>
+      holdings
+        .map((holding, index) => ({ holding, index }))
+        .slice(0, showAll ? holdings.length : INITIAL_VISIBLE),
     [showAll, holdings]
   );
   const hasMore = holdings.length > INITIAL_VISIBLE;
@@ -199,12 +203,12 @@ const HoldingsTable: React.FC<HoldingsTableProps> = ({
                 </td>
               </tr>
             ) : (
-              visibleHoldings.map((holding, idx) => (
+              visibleHoldings.map(({ holding, index }) => (
                 <HoldingRow
-                  key={`${holding.coin}-${idx}`}
+                  key={`${holding.coin}-${index}`}
                   holding={holding}
-                  index={idx}
-                  isSelected={selectedIds.has(idx)}
+                  index={index}
+                  isSelected={selectedIds.has(index)}
                   onToggle={onToggle}
                 />
               ))

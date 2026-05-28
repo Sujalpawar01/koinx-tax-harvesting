@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
+import type { FC } from 'react';
 import type { Holding } from '../../types';
 import { formatCurrency, formatNumber } from '../../utils/formatters';
 import './RecommendationPanel.css';
@@ -10,7 +11,7 @@ interface RecommendationPanelProps {
   onSelectRecommended: (indices: number[]) => void;
 }
 
-const RecommendationPanel: React.FC<RecommendationPanelProps> = ({
+const RecommendationPanel: FC<RecommendationPanelProps> = ({
   holdings,
   selectedIds,
   loading,

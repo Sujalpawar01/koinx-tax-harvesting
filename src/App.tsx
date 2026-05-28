@@ -1,4 +1,3 @@
-import React from 'react';
 import { HarvestingProvider, useHarvesting } from './context/HarvestingContext';
 import Header from './components/Header/Header';
 import Disclaimer from './components/Disclaimer/Disclaimer';
@@ -7,7 +6,7 @@ import RecommendationPanel from './components/RecommendationPanel/Recommendation
 import HoldingsTable from './components/HoldingsTable/HoldingsTable';
 import './App.css';
 
-const AppContent: React.FC = () => {
+const AppContent = () => {
   const {
     state,
     preGains,
@@ -90,7 +89,7 @@ const AppContent: React.FC = () => {
   );
 };
 
-const App: React.FC = () => (
+const App = () => (
   <HarvestingProvider>
     <AppContent />
   </HarvestingProvider>

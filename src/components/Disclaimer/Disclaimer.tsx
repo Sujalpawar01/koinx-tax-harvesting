@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Disclaimer.css';
 
-const Disclaimer: React.FC = () => {
+const Disclaimer = () => {
   const [open, setOpen] = useState(false);
 
   return (

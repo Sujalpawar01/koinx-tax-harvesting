@@ -1,15 +1,21 @@
-import React from 'react';
+import type { FC } from 'react';
 import type { ComputedGains } from '../../types';
 import { formatCurrency } from '../../utils/formatters';
 import './CapitalGainsCards.css';
 
-const GainRow: React.FC<{
+const GainRow: FC<{
   label: string;
   stValue: number;
   ltValue: number;
   bold?: boolean;
   label2?: string;
-}> = ({ label, stValue, ltValue, bold, label2 }) => {
+}> = ({
+  label,
+  stValue,
+  ltValue,
+  bold,
+  label2,
+}) => {
   const isNegativeST = stValue < 0;
   const isNegativeLT = ltValue < 0;
 
@@ -26,7 +32,7 @@ const GainRow: React.FC<{
   );
 };
 
-const SkeletonCard: React.FC<{ variant: 'light' | 'blue' }> = ({ variant }) => (
+const SkeletonCard = ({ variant }: { variant: 'light' | 'blue' }) => (
   <div className={`gains-card gains-card--${variant}`}>
     <div className="skeleton skeleton-title" />
     <div className="gains-card__header-cols">
@@ -51,7 +57,7 @@ interface CapitalGainsCardsProps {
   loading: boolean;
 }
 
-const CapitalGainsCards: React.FC<CapitalGainsCardsProps> = ({
+const CapitalGainsCards: FC<CapitalGainsCardsProps> = ({
   preGains,
   afterGains,
   savings,
